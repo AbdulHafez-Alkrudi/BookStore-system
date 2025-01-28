@@ -31,4 +31,5 @@ class Book extends Model
     }
 
 
+
 }

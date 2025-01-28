@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('borrows', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('order_id')->constrained();
-            $table->foreignId('book_id')->constrained();
-            $table->unsignedInteger('quantity')->default(1);
-            $table->decimal('unit_price', 8, 2);
-            $table->enum('type' , ['borrow', 'buy']);
 
-            $table->primary(['order_id', 'book_id']);
-
-
+            $table->date('due_date');
+            $table->date('return_date')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('borrows');
     }
 };
