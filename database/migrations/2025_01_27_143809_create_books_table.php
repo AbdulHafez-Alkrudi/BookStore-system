@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->foreignId('publisher_id')->references('id')->on('publishers');
             $table->string('title');
-            $table->float('price');
-            $table->integer('count');
+            $table->float('price_for_sale');
+            $table->float('price_for_borrow');
+            $table->integer('amount');
             $table->date('authorship_date');
             $table->boolean('available');
             $table->timestamps();

@@ -17,10 +17,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Relationship to Books via OrderItem (pivot table)
+    // Then keep your current belongsToMany relationships but add:
     public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class, 'order_items')
-            ->withTimestamps(); // Add this if your pivot table has timestamps
+            ->withPivot('quantity') // Add this
+            ->withTimestamps();
     }
 }

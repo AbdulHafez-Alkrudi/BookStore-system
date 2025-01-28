@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('total_invoice');
-            $table->enum('type' , ['borrow','buy']);
+            $table->decimal('total_invoice', 10, 2);
+//            $table->enum('type' , ['borrow','buy']);
             $table->timestamps();
         });
     }
