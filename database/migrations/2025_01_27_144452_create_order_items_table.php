@@ -12,16 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('order_id')->constrained();
             $table->foreignId('book_id')->constrained();
-            $table->unsignedInteger('quantity')->default(1);
+            $table->unsignedInteger('amount')->default(1);
             $table->decimal('unit_price', 8, 2);
-            $table->enum('type' , ['borrow', 'buy']);
-
-            $table->primary(['order_id', 'book_id']);
-
-
+            $table->enum('type', ['borrow', 'buy']);
             $table->timestamps();
+
+            $table->unique(['order_id', 'book_id' , 'type']); // Ensure unique combination
         });
     }
 

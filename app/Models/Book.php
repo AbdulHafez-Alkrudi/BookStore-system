@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Book extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['author_id','category_id', 'publisher_id', 'title', 'price','publish_date', 'count','available'];
     // Add the relationships:
 

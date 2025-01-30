@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->decimal('total_invoice', 10, 2);
-//            $table->enum('type' , ['borrow','buy']);
             $table->timestamps();
         });
     }

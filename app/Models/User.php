@@ -56,4 +56,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    // Add this relationship
+    public function borrows(): HasMany
+    {
+        return $this->hasMany(Borrow::class);
+    }
+
+    // Get active borrows
+    public function activeBorrows(): HasMany
+    {
+        return $this->borrows()->where('status', 'active');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id'];
+    use HasFactory;
+
+    protected $fillable = ['user_id', 'total_invoice'];
 
     // Define the relationship with User
     public function user(): BelongsTo
@@ -21,7 +24,7 @@ class Order extends Model
     public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class, 'order_items')
-            ->withPivot('quantity') // Add this
+            ->withPivot('amount') // Add this
             ->withTimestamps();
     }
 }

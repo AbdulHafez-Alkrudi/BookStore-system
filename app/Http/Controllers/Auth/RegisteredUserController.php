@@ -61,9 +61,9 @@ class RegisteredUserController extends Controller
             'gender' => $request->gender,
         ]);
 
-        event(new Registered($user));
+        //event(new Registered($user));
 
-        Auth::login($user);
+//        Auth::login($user);
         return $this->successResponse($user);
     }
 }

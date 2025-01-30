@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained();
-
-            $table->date('due_date');
-            $table->date('return_date')->nullable();
+            $table->foreignId('order_item_id')->constrained('order_items');
+            $table->foreignId('user_id')->constrained();
+            $table->dateTime('due_date');
+            $table->dateTime('returned_at')->nullable();
+            $table->enum('status', ['active', 'returned', 'overdue'])->default('active');
             $table->timestamps();
         });
     }
